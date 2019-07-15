@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#-------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Name:         base12_26.py
 # Purpose:      Placeholder of Hewlett's base 40 system for 0th and 1st order (base12 and 26).
 #
@@ -7,22 +7,16 @@
 #
 # Copyright:    Copyright © 2018 Michael Scott Cuthbert and the music21 Project
 # License:      LGPL or BSD, see license.txt
-#-------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 '''
 Placeholder dicts for the 0th and 1st order of Hewlett's base40 system (base12 and 26).
 '''
 import unittest
-from music21 import exceptions21
 
-from music21 import common
-from music21 import interval
-from music21 import note
-from music21 import pitch
+# ------------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------------
-
-#Key => Base12 pitch number
-#Value => Music21 Pitch name
+# Key => Base12 pitch number
+# Value => Music21 Pitch name
 base12Equivalent = {0: 'C',
                     1: None,
                     2: 'D',
@@ -37,8 +31,8 @@ base12Equivalent = {0: 'C',
                     11: 'B',
                     }
 
-#Key => Music21 Pitch name
-#Value => Base12 pitch number
+# Key => Music21 Pitch name
+# Value => Base12 pitch number
 base12Representation = {'C': 0,
                         # empty
                         'D': 2,
@@ -53,8 +47,8 @@ base12Representation = {'C': 0,
                         'B': 11,
                         }
 
-#Key => Base40 delta (difference between two Base40 pitch numbers)
-#Value => Corresponding music21 Interval
+# Key => Base40 delta (difference between two Base40 pitch numbers)
+# Value => Corresponding music21 Interval
 Base12IntervalTable =  {0: 'P1',
                         1: 'm2',
                         2: 'M2',
@@ -69,10 +63,10 @@ Base12IntervalTable =  {0: 'P1',
                         11: 'M7',
                         }
 
-#-------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
-#Key => Base26 pitch number
-#Value => Music21 Pitch name
+# Key => Base26 pitch number
+# Value => Music21 Pitch name
 base26Equivalent = {0: 'C-',
                     1: 'C',
                     2: 'C#',
@@ -101,8 +95,8 @@ base26Equivalent = {0: 'C-',
                     25: 'B#',
                     }
 
-#Key => Music21 Pitch name
-#Value => Base26 pitch number
+# Key => Music21 Pitch name
+# Value => Base26 pitch number
 base26Representation = {'C-': 0,
                          'C': 1,
                          'C#': 2,
@@ -131,8 +125,8 @@ base26Representation = {'C-': 0,
                          'B#': 25,
                          }
 
-#Key => Base26 delta (difference between two Base26 pitch numbers)
-#Value => Corresponding music21 Interval
+# Key => Base26 delta (difference between two Base26 pitch numbers)
+# Value => Corresponding music21 Interval
 
 Base26IntervalTable =  {0: 'P1',
 
@@ -153,16 +147,16 @@ Base26IntervalTable =  {0: 'P1',
                         23: 'M7',
                        }
 
-#-------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 class Test(unittest.TestCase):
 
     def runTest(self):
         pass
 
-#-------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     import music21
     music21.mainTest(Test)
 
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------

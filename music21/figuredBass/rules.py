@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
-#-------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Name:         rules.py
 # Purpose:      music21 class to define rules used in realization
 # Authors:      Jose Cabal-Ugaz
 #
 # Copyright:    Copyright © 2010 Michael Scott Cuthbert and the music21 Project
 # License:      LGPL or BSD, see license.txt
-#-------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 import unittest
 from music21 import exceptions21
+from music21 import prebase
 
 doc_forbidIncompletePossibilities = '''True by default. If True,
     :meth:`~music21.figuredBass.possibility.isIncomplete` is applied to all possibA,
@@ -96,7 +97,7 @@ specialResDoc = [('resolveDominantSeventhProperly', doc_domSeventh),
 specialResDoc.sort()
 
 
-class Rules:
+class Rules(prebase.ProtoM21Object):
     '''
     A Rules object is provided as an input to a :class:`~music21.figuredBass.segment.Segment`,
     and controls the application of methods designed to filter out undesired possibilities in
@@ -131,22 +132,24 @@ class Rules:
 
     >>> from music21.figuredBass import rules
     >>> fbRules = rules.Rules()
+    >>> fbRules
+    <music21.figuredBass.rules.Rules>
     >>> fbRules.forbidParallelFifths = False
     >>> fbRules.upperPartsMaxSemitoneSeparation = None
     '''
-    #Attributes in rules should just point to their corresponding methods in possibility
+    # Attributes in rules should just point to their corresponding methods in possibility
     _DOC_ORDER = ([_x[0] for _x in singlePossibilityDoc] +
                   [_y[0] for _y in consecPossibilityDoc] +
                   [_z[0] for _z in specialResDoc])
     _DOC_ATTR = dict(singlePossibilityDoc + consecPossibilityDoc + specialResDoc)
 
     def __init__(self):
-        #Single Possibility rules
+        # Single Possibility rules
         self.forbidIncompletePossibilities = True
         self.upperPartsMaxSemitoneSeparation = 12
         self.forbidVoiceCrossing = True
 
-        #Consecutive Possibility rules
+        # Consecutive Possibility rules
         self.forbidParallelFifths = True
         self.forbidParallelOctaves = True
         self.forbidHiddenFifths = True
@@ -154,7 +157,7 @@ class Rules:
         self.forbidVoiceOverlap = True
         self.partMovementLimits = []
 
-        #Special resolution rules
+        # Special resolution rules
         self.resolveDominantSeventhProperly = True
         self.resolveDiminishedSeventhProperly = True
         self.resolveAugmentedSixthProperly = True
@@ -167,8 +170,8 @@ class Rules:
         self._partPitchLimits = []
         self._partsToCheck = []
 
-    def __repr__(self):
-        return "<music21.figuredBass.rules Rules>"
+    def _reprInternal(self):
+        return ''
 
 
 class FiguredBassRulesException(exceptions21.Music21Exception):
@@ -176,15 +179,15 @@ class FiguredBassRulesException(exceptions21.Music21Exception):
 
 
 
-#-------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 class Test(unittest.TestCase):
 
     def runTest(self):
         pass
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     import music21
     music21.mainTest(Test)
 
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # eof

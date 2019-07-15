@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-#-------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Name:         resolution.py
 # Purpose:      Defines standard resolutions for possibility instances
 # Authors:      Jose Cabal-Ugaz
 #
 # Copyright:    Copyright © 2011 Michael Scott Cuthbert and the music21 Project
 # License:      LGPL or BSD, see license.txt
-#-------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 '''
 .. note:: The terminology, V43, viio, iv, etc. are explained
      more fully in *The Music Theory Handbook*
@@ -86,17 +86,18 @@ def augmentedSixthToDominant(augSixthPossib, augSixthType=None, augSixthChordInf
         if augSixthChord.isItalianAugmentedSixth():
             raise ResolutionException(
                 "Italian augmented sixth resolution not supported in this method.")
-        elif augSixthChord.isFrenchAugmentedSixth():
+
+        if augSixthChord.isFrenchAugmentedSixth():
             augSixthType = 1
         elif augSixthChord.isGermanAugmentedSixth():
             augSixthType = 2
         elif augSixthChord.isSwissAugmentedSixth():
             augSixthType = 3
 
-    if augSixthType == 1 or augSixthType == 3:
-        [bass, other, root, unused_third, fifth] = augSixthChordInfo # other == sixth
+    if augSixthType in (1, 3):
+        [bass, other, root, unused_third, fifth] = augSixthChordInfo  # other == sixth
     elif augSixthType == 2:
-        [bass, root, unused_third, fifth, other] = augSixthChordInfo # other == seventh
+        [bass, root, unused_third, fifth, other] = augSixthChordInfo  # other == seventh
 
     howToResolve = [(lambda p: p.name == bass.name, '-m2'),
                     (lambda p: p.name == root.name, 'm2'),
@@ -155,17 +156,18 @@ def augmentedSixthToMajorTonic(augSixthPossib, augSixthType=None, augSixthChordI
         if augSixthChord.isItalianAugmentedSixth():
             raise ResolutionException(
                 "Italian augmented sixth resolution not supported in this method.")
-        elif augSixthChord.isFrenchAugmentedSixth():
+
+        if augSixthChord.isFrenchAugmentedSixth():
             augSixthType = 1
         elif augSixthChord.isGermanAugmentedSixth():
             augSixthType = 2
         elif augSixthChord.isSwissAugmentedSixth():
             augSixthType = 3
 
-    if augSixthType == 1 or augSixthType == 3:
-        [bass, other, root, unused_third, fifth] = augSixthChordInfo # other == sixth
+    if augSixthType in (1, 3):
+        [bass, other, root, unused_third, fifth] = augSixthChordInfo  # other == sixth
     elif augSixthType == 2:
-        [bass, root, unused_third, fifth, other] = augSixthChordInfo # other == seventh
+        [bass, root, unused_third, fifth, other] = augSixthChordInfo  # other == seventh
 
     howToResolve = [(lambda p: p.name == bass.name, '-m2'),
                     (lambda p: p.name == root.name, 'm2'),
@@ -225,17 +227,18 @@ def augmentedSixthToMinorTonic(augSixthPossib, augSixthType=None, augSixthChordI
         if augSixthChord.isItalianAugmentedSixth():
             raise ResolutionException(
                 "Italian augmented sixth resolution not supported in this method.")
-        elif augSixthChord.isFrenchAugmentedSixth():
+
+        if augSixthChord.isFrenchAugmentedSixth():
             augSixthType = 1
         elif augSixthChord.isGermanAugmentedSixth():
             augSixthType = 2
         elif augSixthChord.isSwissAugmentedSixth():
             augSixthType = 3
 
-    if augSixthType == 1 or augSixthType == 3:
-        [bass, other, root, unused_third, fifth] = augSixthChordInfo # other == sixth
+    if augSixthType in (1, 3):
+        [bass, other, root, unused_third, fifth] = augSixthChordInfo  # other == sixth
     elif augSixthType == 2:
-        [bass, root, unused_third, fifth, other] = augSixthChordInfo # other == seventh
+        [bass, root, unused_third, fifth, other] = augSixthChordInfo  # other == seventh
 
     howToResolve = [(lambda p: p.name == bass.name, '-m2'),
                     (lambda p: p.name == root.name, 'm2'),
@@ -713,7 +716,7 @@ def showResolutions(*allPossib):
     score.insert(0, bassLine)
     score.show()
 
-#----------------------------------------------
+# ---------------------------------------------
 # INTERNAL METHODS
 
 def _transpose(samplePitch, intervalString):
@@ -722,7 +725,7 @@ def _transpose(samplePitch, intervalString):
 def _resolvePitches(possibToResolve, howToResolve):
     '''
     Takes in a possibility to resolve and a list of (lambda function, intervalString)
-    pairs and tranposes each pitch by the intervalString corresponding to the lambda
+    pairs and transposes each pitch by the intervalString corresponding to the lambda
     function that returns True when applied to the pitch.
     '''
     howToResolve.append((lambda p: True, 'P1'))
@@ -753,19 +756,19 @@ _DOC_ORDER = [augmentedSixthToDominant,
               diminishedSeventhToMajorTonic, diminishedSeventhToMinorTonic,
               diminishedSeventhToMajorSubdominant, diminishedSeventhToMinorSubdominant]
 
-#-------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 class ResolutionException(exceptions21.Music21Exception):
     pass
 
-#-------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 class Test(unittest.TestCase):
 
     def runTest(self):
         pass
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     import music21
     music21.mainTest(Test)
 
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # eof
